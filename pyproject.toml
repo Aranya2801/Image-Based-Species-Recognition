@@ -1,0 +1,62 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.backends.legacy:build"
+
+[project]
+name            = "species-recognition"
+version         = "2.1.0"
+description     = "MIT-Level Image-Based Species Recognition System"
+readme          = "README.md"
+license         = { file = "LICENSE" }
+requires-python = ">=3.10"
+authors         = [{ name = "Aranya2801", email = "species-ai@example.com" }]
+keywords        = [
+    "species-recognition", "biodiversity", "deep-learning",
+    "computer-vision", "pytorch", "wildlife", "conservation"
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Scientific/Engineering :: Bio-Informatics",
+]
+
+[project.urls]
+Homepage      = "https://github.com/Aranya2801/Image-Based-Species-Recognition"
+Documentation = "https://github.com/Aranya2801/Image-Based-Species-Recognition/tree/main/docs"
+Repository    = "https://github.com/Aranya2801/Image-Based-Species-Recognition"
+Issues        = "https://github.com/Aranya2801/Image-Based-Species-Recognition/issues"
+
+[project.scripts]
+species-predict = "src.inference.predict:main"
+species-train   = "src.train:main"
+species-verify  = "scripts.verify_install:main"
+
+[tool.ruff]
+line-length    = 100
+target-version = "py310"
+select         = ["E", "F", "I", "N", "W", "UP"]
+ignore         = ["E501"]
+
+[tool.black]
+line-length    = 100
+target-version = ["py310", "py311"]
+
+[tool.isort]
+profile        = "black"
+line_length    = 100
+
+[tool.pytest.ini_options]
+testpaths      = ["tests"]
+asyncio_mode   = "auto"
+addopts        = "-v --tb=short"
+
+[tool.coverage.run]
+source         = ["src"]
+omit           = ["*/tests/*", "*/scripts/*"]
+
+[tool.coverage.report]
+exclude_lines  = ["pragma: no cover", "def __repr__", "raise NotImplementedError"]
